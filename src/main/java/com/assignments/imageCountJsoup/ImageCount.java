@@ -1,6 +1,8 @@
 package com.assignments.imageCountJsoup;
 
 import java.io.IOException;
+import java.util.Random;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -12,6 +14,8 @@ public class ImageCount {
 		Document doc;
 		Elements allLinks;
 		Elements allImages;
+		int randomLinkNum;
+//		Random random;
 		doc = Jsoup.connect(url).get();
 
 		for (int i = 0; i < gen; i++) {
@@ -19,12 +23,13 @@ public class ImageCount {
 			allImages = doc.getElementsByTag("img");
 			System.out.println("Number of Links in Gen " + (i+1) + " --> " + allLinks.size());
 			System.out.println("Number of Images in Gen " + (i+1) + " --> " + allImages.size());
-			if (!allLinks.get(24).attr("href").contains("http")) {
-				System.out.println("Selecting Sublink --> " + url + allLinks.get(24).attr("href") +"\n");
-				doc = Jsoup.connect(url + allLinks.get(24).attr("href")).get();
+			randomLinkNum = (int) (Math.random() * allLinks.size());
+			if (!allLinks.get(randomLinkNum).attr("href").contains("http")) {
+				System.out.println("Selecting Sublink --> " + url + allLinks.get(randomLinkNum).attr("href") +"\n");
+				doc = Jsoup.connect(url + allLinks.get(randomLinkNum).attr("href")).get();
 			} else {
-				System.out.println("Selecting Sublink --> " + allLinks.get(24).attr("href") +"\n");
-				doc = Jsoup.connect(allLinks.get(24).attr("href")).get();
+				System.out.println("Selecting Sublink --> " + allLinks.get(randomLinkNum).attr("href") +"\n");
+				doc = Jsoup.connect(allLinks.get(randomLinkNum).attr("href")).get();
 			}
 		}
 
