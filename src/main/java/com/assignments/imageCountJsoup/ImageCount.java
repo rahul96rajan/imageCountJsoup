@@ -1,8 +1,6 @@
 package com.assignments.imageCountJsoup;
 
 import java.io.IOException;
-import java.util.Random;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
